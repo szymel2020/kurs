@@ -11,7 +11,19 @@
 		}
 	</style>	
 </head>
-<body>
+
+	<body>
+		<script>
+			var my_canvas = document.createElement('canvas');
+			my_canvas.width = 500;
+			my_canvas.height = 500;
+			document.body.appendChild(my_canvas)
+			
+			var ctx = mycanvas.getContext('2d')
+			
+			ctx.fillRect(100, 70, 250, 50)
+			
+		</script>
 	
-</body>
+	</body>
 </html>
