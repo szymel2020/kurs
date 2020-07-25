@@ -39,6 +39,31 @@
 			
 			ctx.stroke();
 			
+			ctx.beginPath();
+			
+			// radiany = Math.PI/180*45
+			
+			ctx.arc(300, 350, 100, Math.PI/180*45, Math.PI/180*90, false)
+			
+			ctx.stroke();
+			
+			// krzywe Beziera
+			
+			ctx.beginPath();
+			ctx.moveTo(200, 250);
+			ctx.bezierCurveTo(200, 100, 400, 400, 400, 250);
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.moveTo(150, 320);
+			ctx.bezierCurveTo(40, 260, 130, 400, 150, 390);
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.moveTo(150, 320);
+			ctx.bezierCurveTo(260, 260, 170, 400, 150, 390);
+			ctx.stroke();
+			
 		</script>
 	
 	</body>
