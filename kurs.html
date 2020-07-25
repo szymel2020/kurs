@@ -8,7 +8,7 @@
 			margin: 0;
 			padding: 0;
 			overflow: hidden;
-			background-color: darkgray;
+/*			background-color: gainsboro;*/
 			
 		}
 	</style>	
@@ -23,7 +23,61 @@
 			
 			var ctx = my_canvas.getContext('2d');
 			
-			ctx.fillRect(30, 30, 100, 100);
+//			kolory i style linii
+//			zmiany koloru wypełnienia
+			ctx.fillStyle = '#84e8ee';
+			ctx.fillRect(10,10,60,60);
+			
+			ctx.fillStyle = 'rgb(285,155,127)';
+			ctx.fillRect(80,10,60,60);
+			
+			ctx.fillStyle = 'rgba(255,0,0,0.9)';
+			ctx.fillRect(150,10,60,60);
+			
+			ctx.fillStyle = 'pink';
+			ctx.fillRect(220,10,60,60);
+			
+//			zmiany koloru konturu
+			ctx.strokeStyle = '#75e01f';
+			ctx.strokeRect(290,10,60,60);
+			
+			ctx.strokeStyle = 'darkgreen';
+			ctx.strokeRect(360,10,60,60);
+			
+//			przezroczystość globalna
+			ctx.globalAlpha = 0.5;
+			ctx.fillStyle = 'black';
+			ctx.fillRect(10,80,60,60);
+			
+//			grubość linii
+			ctx.globalAlpha = 1;
+			ctx.lineWidth = 10;
+			ctx.strokeRect(10,150,60,60);
+//			sposoby łączenia linii
+			ctx.lineJoin = 'round';
+			ctx.strokeRect(90,150,60,60);
+			
+			ctx.lineJoin = 'bevel';
+			ctx.strokeRect(170,150,60,60);
+			
+//			nie przekroczony limit
+			ctx.lineJoin = 'miter';
+			ctx.miterLimit = 15;
+			ctx.beginPath()
+			ctx.moveTo(170, 240);
+			ctx.lineTo(190, 330);
+			ctx.lineTo(200, 220);
+			ctx.stroke()
+//			scięty czubek
+			ctx.lineJoin = 'miter';
+			ctx.miterLimit = 2;
+			ctx.beginPath()
+			ctx.moveTo(210, 240);
+			ctx.lineTo(230, 330);
+			ctx.lineTo(240, 220);
+			ctx.stroke()
+			
+			/*ctx.fillRect(30, 30, 100, 100);
 			ctx.fillRect(360, 90, 100, 100);
 			
 			ctx.strokeRect(140, 30, 50, 50);
@@ -41,13 +95,13 @@
 			
 			ctx.beginPath();
 			
-			// radiany = Math.PI/180*45
+//			 radiany = Math.PI/180*45
 			
 			ctx.arc(300, 350, 100, Math.PI/180*45, Math.PI/180*90, false)
 			
 			ctx.stroke();
 			
-			// krzywe Beziera
+//			 krzywe Beziera
 			
 			ctx.beginPath();
 			ctx.moveTo(200, 250);
@@ -63,6 +117,25 @@
 			ctx.moveTo(150, 320);
 			ctx.bezierCurveTo(260, 260, 170, 400, 150, 390);
 			ctx.stroke();
+			
+//			 wycinanie otworów
+			
+			ctx.beginPath();
+//			pierwsza linia, obiekt
+			ctx.moveTo(40, 300);
+			ctx.lineTo(300, 320);
+			ctx.lineTo(400, 380);
+			ctx.bezierCurveTo(400,500, 60,500, 40,350);
+			ctx.lineTo(40, 300);
+			
+//			druga linia , obiekt
+			ctx.moveTo(150, 350);
+			ctx.lineTo(175, 400);
+			ctx.lineTo(200, 350);
+			ctx.lineTo(150, 350);
+			
+			
+			ctx.fill();*/
 			
 		</script>
 	
