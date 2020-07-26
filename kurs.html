@@ -15,7 +15,52 @@
 </head>
 
 	<body>
+				
+
 		<script>
+			
+//			zmienne (typt Strong, Int i Float)
+			
+			var żółć = "coś"
+//			zmienna String czyli siąg znaków
+			var name = "dan'gfg'iel"
+			var name2 = 'piotr'
+			console.log(name2,name)
+//			dodanie zmiennych
+			var names = name+name2
+			console.log(names)
+//			dodanie spacji w cudzysłowiu
+			var names = name +' '+name2
+			console.log(names)
+//			właściwość length mówi o tym ile jest znaków w ciągu znaku
+			console.log(names.length)
+//			Int zmienna przeznaczona do liczb całkowitych
+			var num1 = 12;
+			var num2 = 40.2;
+			console.log(num1, num2)
+//			mnożenie
+			var num3 = num1*num2;
+			console.log(num3)
+			
+			var num3 = num1*12;
+			console.log(num3)
+//			dzielenie
+			var num3 = num1/num2;
+			console.log(num3)
+//			dodawanie liczby do łańcucha znaków
+			var num4 = '45'+10;
+			console.log(num4)
+//			odejmowanie liczby do łańcucha znaków
+			var num5 = '40'-10;
+			console.log(num5)
+			var num6 = '485621';
+			var num7 = parseInt(num6);
+			console.log(num7);
+//			przypisywanie do wcześniej utworzonej zmiennej innej wartości, wtedy konsola drukuje to ostatnie przypisanie
+			num7 = 'jakiś łańcuch znaków';
+			console.log(num7)
+			
+			
 			var my_canvas = document.createElement('canvas');
 			my_canvas.width = 500;
 			my_canvas.height = 500;
@@ -23,7 +68,17 @@
 			
 			var ctx = my_canvas.getContext('2d');
 			
-//			kolory i style linii
+//			Gradienty
+			var my_gradient = ctx.createLinearGradient(10,500, 310,200);
+//			określenie koloru i ilości procentowej tego koloru od 0 do 1
+			my_gradient.addColorStop(0.3, '#dcf225');
+			my_gradient.addColorStop(0.52, '#0ce0ff');
+			my_gradient.addColorStop(0.7, '#ff4992');
+//			przypisanie gradientu do obiektu
+			ctx.fillStyle = my_gradient;
+			ctx.fillRect(0,0,700,700);
+			
+/*//			kolory i style linii
 //			zmiany koloru wypełnienia
 			ctx.fillStyle = '#84e8ee';
 			ctx.fillRect(10,10,60,60);
@@ -34,7 +89,7 @@
 			ctx.fillStyle = 'rgba(255,0,0,0.9)';
 			ctx.fillRect(150,10,60,60);
 			
-			ctx.fillStyle = 'pink';
+			ctx.fillStyle = 'yellow';
 			ctx.fillRect(220,10,60,60);
 			
 //			zmiany koloru konturu
@@ -75,7 +130,7 @@
 			ctx.moveTo(210, 240);
 			ctx.lineTo(230, 330);
 			ctx.lineTo(240, 220);
-			ctx.stroke()
+			ctx.stroke()*/
 			
 			/*ctx.fillRect(30, 30, 100, 100);
 			ctx.fillRect(360, 90, 100, 100);
