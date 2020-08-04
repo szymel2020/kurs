@@ -19,8 +19,14 @@
 <!--		<script src="js/rAF.js"></script>			-->
 
 		 <script>
+			 
+			 var my_object = { x:40, y:189 };
+//			 notacja kropkowa, po kropce podajemy to co chcemy wywołać
+			 console.log(my_object.x);
+//			 notacja z nawiasami kwadratowymi
+			 console.log(my_object['x']);
 		
-		var my_canvas = document.createElement('canvas');
+	/*	var my_canvas = document.createElement('canvas');
 		my_canvas.width = 500;
 		my_canvas.height = 500;
 		document.body.appendChild(my_canvas);
@@ -33,7 +39,10 @@
 		var g = rand(0,240);
 		var b = rand(0,240);
 		var speedX = rand(-1000,1000)/100;	 
-		var speedY = rand(-1000,1000)/100;	 
+		var speedY = rand(-1000,1000)/100;
+		if(speedX==0 && speedY==0){
+			speedX = rand(1,5);
+		}
 		var fps = 60;
 		
 	
@@ -66,7 +75,7 @@
 		//				obiekt Math ma metodę random, random nie przyjmuje argumentów ale zwraca wartość od 0 do 1
 //			Math.random zaokrągla liczy do całkowitych
 			return Math.floor(Math.random()*(max-min+1)+min)
-		}
+		}*/
 		
 		
 		
