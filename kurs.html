@@ -15,184 +15,405 @@
 </head>
 
 	<body>
-				
+			
+<!--		<script src="js/rAF.js"></script>			-->
 
-		<script>
+		 <script>
+		
+		var my_canvas = document.createElement('canvas');
+		my_canvas.width = 500;
+		my_canvas.height = 500;
+		document.body.appendChild(my_canvas);
+		var ctx = my_canvas.getContext('2d');
+		
+		var x = my_canvas.width/2;
+		var y = my_canvas.height/2;
+		var h = rand(10,80);
+		var r = rand(0,240);
+		var g = rand(0,240);
+		var b = rand(0,240);
+		var speedX = rand(-1000,1000)/100;	 
+		var speedY = rand(-1000,1000)/100;	 
+		var fps = 60;
+		
+	
+		
+		var lastTime = 0;
+		animationLoop();
+		
+		function animationLoop( time ){
+			requestAnimationFrame( animationLoop )
+		//				'time' jest parametrem który dostajemy za każdym razem jak requestAnimation Frame wywoła funkcje
 			
-//			zmienne (typt Strong, Int i Float)
+			if(time-lastTime>=1000/fps){
+				
+				lastTime = time;
+		//			ctx.clearRect(0,0,my_canvas.width, my_canvas.height)
+		//			kolor biały canvas z przezroczystością 0.2
+			ctx.fillStyle = 'rgba(255,255,255,0.2)';
+			ctx.fillRect(0,0,my_canvas.width, my_canvas.height);
 			
-			var żółć = "coś"
-//			zmienna String czyli siąg znaków
-			var name = "dan'gfg'iel"
-			var name2 = 'piotr'
-			console.log(name2,name)
-//			dodanie zmiennych
-			var names = name+name2
-			console.log(names)
-//			dodanie spacji w cudzysłowiu
-			var names = name +' '+name2
-			console.log(names)
-//			właściwość length mówi o tym ile jest znaków w ciągu znaku
-			console.log(names.length)
-//			Int zmienna przeznaczona do liczb całkowitych
-			var num1 = 12;
-			var num2 = 40.2;
-			console.log(num1, num2)
-//			mnożenie
-			var num3 = num1*num2;
-			console.log(num3)
+			ctx.fillStyle = 'rgb( '+r+','+g+','+b+')';
+				
+			x = x+speedX;
+			y = y+speedY;
+			ctx.fillRect(x-h/2, y-h/2, h,h);
+		}
 			
-			var num3 = num1*12;
-			console.log(num3)
-//			dzielenie
-			var num3 = num1/num2;
-			console.log(num3)
-//			dodawanie liczby do łańcucha znaków
-			var num4 = '45'+10;
-			console.log(num4)
-//			odejmowanie liczby do łańcucha znaków
-			var num5 = '40'-10;
-			console.log(num5)
-			var num6 = '485621';
-			var num7 = parseInt(num6);
-			console.log(num7);
-//			przypisywanie do wcześniej utworzonej zmiennej innej wartości, wtedy konsola drukuje to ostatnie przypisanie
-			num7 = 'jakiś łańcuch znaków';
-			console.log(num7)
+		}
+		
+		function rand(min, max){
+		//				obiekt Math ma metodę random, random nie przyjmuje argumentów ale zwraca wartość od 0 do 1
+//			Math.random zaokrągla liczy do całkowitych
+			return Math.floor(Math.random()*(max-min+1)+min)
+		}
+		
+		
+		
+		
+		
+		
+		/*function circleArea(r){
+			return r*2
+		}
+		
+		function sumCircleArea(r1, r2){
+			return circleArea(r1) + circleArea(r2)
+		}
+		
+		var area = sumCircleArea(10,50);
+		var r1 = circleArea(10);
+		var r2 = circleArea(50);
+		console.log(area, );
+		console.log(r1,);
+		console.log(r2);
+		
+		
+		function ten(a){
+			return (a*a)
+		}
+		
+		
+		function bike(s1,s2){
+			return ten(s1) + ten(s2)
+		}
+		var bnm = bike(4,5);
+		var sd1 = ten(4);
+		var sd2 = ten(5);
+		console.log(bnm);
+		console.log(sd1);
+		console.log(sd2);
+		
+		//			wartością tej zmiennej jest funkcja, a funkcja nie musi mieć nazwy, jest przypisana do zmiennej
+		var moja_funkcja = function(){
+			return 2+3;
+		}
+		
+		console.log (moja_funkcja());*/
+		
+		/*			
+		//			Metoda requestAnimationFrame 
+		//			
+		//			która odtwarza , zgrywa wszystkie animacje płynnie
+		var my_canvas = document.createElement('canvas');
+		my_canvas.width = 500;
+		my_canvas.height = 500;
+		document.body.appendChild(my_canvas);
+		var ctx = my_canvas.getContext('2d');
+		
+		var x = my_canvas.width/2;
+		var y = my_canvas.height/2;
+		var h = 40;
+		var fps = 60;
+		
+		//			setInterval(animationLoop, 1000/fps);
+		
+		var lastTime = 0;
+		animationLoop();
+		
+		function animationLoop( time ){
+			requestAnimationFrame( animationLoop )
+		//				'time' jest parametrem który dostajemy za każdym razem jak requestAnimation Frame wywoła funkcje
 			
+			if(time-lastTime>=1000/fps){
+				
+				lastTime = time;
+		//			ctx.clearRect(0,0,my_canvas.width, my_canvas.height)
+		//			kolor biały canvas z przezroczystością 0.2
+			ctx.fillStyle = 'rgba(255,255,255,0.2)';
+			ctx.fillRect(0,0,my_canvas.width, my_canvas.height);
 			
-			var my_canvas = document.createElement('canvas');
-			my_canvas.width = 500;
-			my_canvas.height = 500;
-			document.body.appendChild(my_canvas);
-			
-			var ctx = my_canvas.getContext('2d');
-			
-//			Gradienty
-			var my_gradient = ctx.createLinearGradient(10,500, 310,200);
-//			określenie koloru i ilości procentowej tego koloru od 0 do 1
-			my_gradient.addColorStop(0.3, '#dcf225');
-			my_gradient.addColorStop(0.52, '#0ce0ff');
-			my_gradient.addColorStop(0.7, '#ff4992');
-//			przypisanie gradientu do obiektu
-			ctx.fillStyle = my_gradient;
-			ctx.fillRect(0,0,700,700);
-			
-/*//			kolory i style linii
-//			zmiany koloru wypełnienia
-			ctx.fillStyle = '#84e8ee';
-			ctx.fillRect(10,10,60,60);
-			
-			ctx.fillStyle = 'rgb(285,155,127)';
-			ctx.fillRect(80,10,60,60);
-			
-			ctx.fillStyle = 'rgba(255,0,0,0.9)';
-			ctx.fillRect(150,10,60,60);
-			
-			ctx.fillStyle = 'yellow';
-			ctx.fillRect(220,10,60,60);
-			
-//			zmiany koloru konturu
-			ctx.strokeStyle = '#75e01f';
-			ctx.strokeRect(290,10,60,60);
-			
-			ctx.strokeStyle = 'darkgreen';
-			ctx.strokeRect(360,10,60,60);
-			
-//			przezroczystość globalna
-			ctx.globalAlpha = 0.5;
 			ctx.fillStyle = 'black';
-			ctx.fillRect(10,80,60,60);
+				
+			x = x+2;
+			y = y+2;
+			ctx.fillRect(x-h/2, y-h/2, h,h);
+		}
 			
-//			grubość linii
-			ctx.globalAlpha = 1;
-			ctx.lineWidth = 10;
-			ctx.strokeRect(10,150,60,60);
-//			sposoby łączenia linii
-			ctx.lineJoin = 'round';
-			ctx.strokeRect(90,150,60,60);
-			
-			ctx.lineJoin = 'bevel';
-			ctx.strokeRect(170,150,60,60);
-			
-//			nie przekroczony limit
-			ctx.lineJoin = 'miter';
-			ctx.miterLimit = 15;
-			ctx.beginPath()
-			ctx.moveTo(170, 240);
-			ctx.lineTo(190, 330);
-			ctx.lineTo(200, 220);
-			ctx.stroke()
-//			scięty czubek
-			ctx.lineJoin = 'miter';
-			ctx.miterLimit = 2;
-			ctx.beginPath()
-			ctx.moveTo(210, 240);
-			ctx.lineTo(230, 330);
-			ctx.lineTo(240, 220);
-			ctx.stroke()*/
-			
-			/*ctx.fillRect(30, 30, 100, 100);
-			ctx.fillRect(360, 90, 100, 100);
-			
-			ctx.strokeRect(140, 30, 50, 50);
-			
-			ctx.clearRect(50, 50, 250, 250);
-			
-			ctx.beginPath();
-			ctx.moveTo(30, 140);
-			ctx.lineTo(100,140);
-			ctx.lineTo(60, 250);
-			ctx.lineTo(10, 150);
-			ctx.closePath();
-			
-			ctx.stroke();
-			
-			ctx.beginPath();
-			
-//			 radiany = Math.PI/180*45
-			
-			ctx.arc(300, 350, 100, Math.PI/180*45, Math.PI/180*90, false)
-			
-			ctx.stroke();
-			
-//			 krzywe Beziera
-			
-			ctx.beginPath();
-			ctx.moveTo(200, 250);
-			ctx.bezierCurveTo(200, 100, 400, 400, 400, 250);
-			ctx.stroke();
-			
-			ctx.beginPath();
-			ctx.moveTo(150, 320);
-			ctx.bezierCurveTo(40, 260, 130, 400, 150, 390);
-			ctx.stroke();
-			
-			ctx.beginPath();
-			ctx.moveTo(150, 320);
-			ctx.bezierCurveTo(260, 260, 170, 400, 150, 390);
-			ctx.stroke();
-			
-//			 wycinanie otworów
-			
-			ctx.beginPath();
-//			pierwsza linia, obiekt
-			ctx.moveTo(40, 300);
-			ctx.lineTo(300, 320);
-			ctx.lineTo(400, 380);
-			ctx.bezierCurveTo(400,500, 60,500, 40,350);
-			ctx.lineTo(40, 300);
-			
-//			druga linia , obiekt
-			ctx.moveTo(150, 350);
-			ctx.lineTo(175, 400);
-			ctx.lineTo(200, 350);
-			ctx.lineTo(150, 350);
-			
-			
-			ctx.fill();*/
-			
-		</script>
+		}*/
+		
+		
+		
+		/*//			WARUNKI (KONSTRUKCJE LOGICZNE)
+		var day = "Poniedziałek";
+		
+		if(day=="Sobota"){
+			idzDoKina();
+		}else if(day=="Poniedziałek"){
+			idzDoPracy();
+		}else{
+			pracujWDomu();
+		}
+		
+		//			var num = 0;
+		if(hour==9){
+			num = 20;
+		}else{
+			num = 10;
+		}
+		//			skrót tego co jest powyżej (hour musi równać się  0 jeśli jest prawdziwy to jest to co jest po "?" jeśli jest fałszywy to jest to co jest po ":" .)
+		var num = hour == 9 ? 20 : 10;*/
+		
+		/*//			ANIMACJA
+		var my_canvas = document.createElement('canvas');
+		my_canvas.width = 500;
+		my_canvas.height = 500;
+		document.body.appendChild(my_canvas);
+		var ctx = my_canvas.getContext('2d');
+		
+		//			Animacja
+		
+		//			odnosimy się do wielkości canvas
+		var x = my_canvas.width/2;
+		var y = my_canvas.height/2;
+		//			wielkość obiektu 40 pikseli
+		var h = 40;
+		//			sensowna prędkość wyświetlenia to miedzy 25-60 klatek na sekunde
+		//			30 klatek na sekunde, tak będzie rysowany obiekt
+		var fps = 30;
+		//			nadanie funkcji 'animationLoop' prędkości rysowania
+		setInterval(animationLoop, 1000/fps);
+		//			rysowanie obiktu (wysokość i szerokość;minus h/2, dwa h to boki obiektu)
+		function animationLoop(){
+		//			czyszczenie canvas przez clearReact	
+		//			ctx.clearRect(0,0,my_canvas.width, my_canvas.height)
+		//			kolor biały canvas z przezroczystością 0.2
+		ctx.fillStyle = 'rgba(255,255,255,0.2)';
+		//			ustawienie koloru białego na cały canvas	
+		ctx.fillRect(0,0,my_canvas.width, my_canvas.height);
+		//			nadanie prędkości przesunięcia obiektu	
+			x = x+8;
+			y = y+8;
+		//			nadanie koloru	
+		ctx.fillStyle = 'red';
+		ctx.fillRect(x-h/2, y-h/2, h,h)
+		}*/
+		
+		
+				/*	
+		//		Boolean typ zmiennej której zawartość może przyjąć wartość albo "true" albo "false"	
+		var b1 = true;
+		var b2 = false;
+		
+		var num = 56;
+		
+		var b3 = num==9;
+		var b4 = num!=9;
+		//			javaScript  w przypadku '=='zmienne zamienia na liczby albo na coąg znaków aby je porównać
+		var b5 = '3'==3;
+		//			javaScript  w przypadku '==='zmienne nie zamienia na takie same aby je porównać
+		var b6 = '3'===3;
+		var b7 = 9<7;
+		//			dwa znaki "&&" oznaczają "i"
+		var b8 = num<100 && num>35;
+		//			dwa znaki "||" oznaczają "lub"
+		var b9 = num<100 || num>1000;
+		var b9 = (num<100 || num>1000) && num>0;
+		//			wykrzyknik " ! " neguje całe wyrażenie
+		var b10 = !(num<10)
+		*/
+		
+		
+		
+				/*	
+		//			zmienne (typt Strong, Int i Float)
+		
+		var żółć = "coś"
+		//			zmienna String czyli siąg znaków
+		var name = "dan'gfg'iel"
+		var name2 = 'piotr'
+		console.log(name2,name)
+		//			dodanie zmiennych
+		var names = name+name2
+		console.log(names)
+		//			dodanie spacji w cudzysłowiu
+		var names = name +' '+name2
+		console.log(names)
+		//			właściwość length mówi o tym ile jest znaków w ciągu znaku
+		console.log(names.length)
+		//			Int zmienna przeznaczona do liczb całkowitych
+		var num1 = 12;
+		var num2 = 40.2;
+		console.log(num1, num2)
+		//			mnożenie
+		var num3 = num1*num2;
+		console.log(num3)
+		
+		var num3 = num1*12;
+		console.log(num3)
+		//			dzielenie
+		var num3 = num1/num2;
+		console.log(num3)
+		//			dodawanie liczby do łańcucha znaków
+		var num4 = '45'+10;
+		console.log(num4)
+		//			odejmowanie liczby do łańcucha znaków
+		var num5 = '40'-10;
+		console.log(num5)
+		var num6 = '485621';
+		var num7 = parseInt(num6);
+		console.log(num7);
+		//			przypisywanie do wcześniej utworzonej zmiennej innej wartości, wtedy konsola drukuje to ostatnie przypisanie
+		num7 = 'jakiś łańcuch znaków';
+		console.log(num7)*/
+		
+		
+		
+		
+				/*	var my_canvas = document.createElement('canvas');
+		my_canvas.width = 500;
+		my_canvas.height = 500;
+		document.body.appendChild(my_canvas);
+		
+		var ctx = my_canvas.getContext('2d');*/
+		/*			
+		//			Gradienty
+		var my_gradient = ctx.createLinearGradient(10,500, 310,200);
+		//			określenie koloru i ilości procentowej tego koloru od 0 do 1
+		my_gradient.addColorStop(0.3, '#dcf225');
+		my_gradient.addColorStop(0.52, '#0ce0ff');
+		my_gradient.addColorStop(0.7, '#ff4992');
+		//			przypisanie gradientu do obiektu
+		ctx.fillStyle = my_gradient;
+		ctx.fillRect(0,0,700,700);*/
+		
+		
+		
+		/*//			kolory i style linii
+		//			zmiany koloru wypełnienia
+		ctx.fillStyle = '#84e8ee';
+		ctx.fillRect(10,10,60,60);
+		
+		ctx.fillStyle = 'rgb(285,155,127)';
+		ctx.fillRect(80,10,60,60);
+		
+		ctx.fillStyle = 'rgba(255,0,0,0.9)';
+		ctx.fillRect(150,10,60,60);
+		
+		ctx.fillStyle = 'yellow';
+		ctx.fillRect(220,10,60,60);
+		
+		//			zmiany koloru konturu
+		ctx.strokeStyle = '#75e01f';
+		ctx.strokeRect(290,10,60,60);
+		
+		ctx.strokeStyle = 'darkgreen';
+		ctx.strokeRect(360,10,60,60);
+		
+		//			przezroczystość globalna
+		ctx.globalAlpha = 0.5;
+		ctx.fillStyle = 'black';
+		ctx.fillRect(10,80,60,60);
+		
+		//			grubość linii
+		ctx.globalAlpha = 1;
+		ctx.lineWidth = 10;
+		ctx.strokeRect(10,150,60,60);
+		//			sposoby łączenia linii
+		ctx.lineJoin = 'round';
+		ctx.strokeRect(90,150,60,60);
+		
+		ctx.lineJoin = 'bevel';
+		ctx.strokeRect(170,150,60,60);
+		
+		//			nie przekroczony limit
+		ctx.lineJoin = 'miter';
+		ctx.miterLimit = 15;
+		ctx.beginPath()
+		ctx.moveTo(170, 240);
+		ctx.lineTo(190, 330);
+		ctx.lineTo(200, 220);
+		ctx.stroke()
+		//			scięty czubek
+		ctx.lineJoin = 'miter';
+		ctx.miterLimit = 2;
+		ctx.beginPath()
+		ctx.moveTo(210, 240);
+		ctx.lineTo(230, 330);
+		ctx.lineTo(240, 220);
+		ctx.stroke()*/
+		
+		/*ctx.fillRect(30, 30, 100, 100);
+		ctx.fillRect(360, 90, 100, 100);
+		
+		ctx.strokeRect(140, 30, 50, 50);
+		
+		ctx.clearRect(50, 50, 250, 250);
+		
+		ctx.beginPath();
+		ctx.moveTo(30, 140);
+		ctx.lineTo(100,140);
+		ctx.lineTo(60, 250);
+		ctx.lineTo(10, 150);
+		ctx.closePath();
+		
+		ctx.stroke();
+		
+		ctx.beginPath();
+		
+		//			 radiany = Math.PI/180*45
+		
+		ctx.arc(300, 350, 100, Math.PI/180*45, Math.PI/180*90, false)
+		
+		ctx.stroke();
+		
+		//			 krzywe Beziera
+		
+		ctx.beginPath();
+		ctx.moveTo(200, 250);
+		ctx.bezierCurveTo(200, 100, 400, 400, 400, 250);
+		ctx.stroke();
+		
+		ctx.beginPath();
+		ctx.moveTo(150, 320);
+		ctx.bezierCurveTo(40, 260, 130, 400, 150, 390);
+		ctx.stroke();
+		
+		ctx.beginPath();
+		ctx.moveTo(150, 320);
+		ctx.bezierCurveTo(260, 260, 170, 400, 150, 390);
+		ctx.stroke();
+		
+		//			 wycinanie otworów
+		
+		ctx.beginPath();
+		//			pierwsza linia, obiekt
+		ctx.moveTo(40, 300);
+		ctx.lineTo(300, 320);
+		ctx.lineTo(400, 380);
+		ctx.bezierCurveTo(400,500, 60,500, 40,350);
+		ctx.lineTo(40, 300);
+		
+		//			druga linia , obiekt
+		ctx.moveTo(150, 350);
+		ctx.lineTo(175, 400);
+		ctx.lineTo(200, 350);
+		ctx.lineTo(150, 350);
+		
+		
+		ctx.fill();*/
+		
+				</script> -->
 	
 	</body>
 </html>
