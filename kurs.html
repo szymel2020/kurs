@@ -15,20 +15,175 @@
 </head>
 
 			
-	<body>
 <!--		<script src="js/rAF.js"></script>			-->
+	<body>
 					 
 					 
-					 
-				
 		 		 <script>
+					 
+				//Zdarzenia
+					 
+					 //nasłuchiwacz, trzy parametry:keydown, onAction, i false
+					 //klawisz naciśnięty 
+					 window.addEventListener('keydown', onAction, false);
+					 //klawisz puszczony
+					 window.addEventListener('keyup', onAction, false);
+					 //za każdym razem jak zostanie odpalona funkcja przez jakieś zdarzenie do tej funkcji zostanie przekazany obiekt który zawiera wiele ciakawych informacji
+					 
+					 //nasłuchiwanie kliknięć
+					 window.addEventListener('click', onAction, false);
+					 //nasłuchiwanie wciśnięcia myszy
+					 window.addEventListener('mousedown', onAction, false);
+					 //nasłuchiwanie odciśnięcia myszy
+					 window.addEventListener('mouseup', onAction, false);
+					 //'event' w poniższej funkcji to obiekt
+					 function onAction(event){
+						 console.log(event.type)
+					 }
+					 //odłączenie zdarzenia
+					 function onAction(event){
+						 console.log(event.type)
+						 if(event.type=='mouseup'){
+							 window.removeEventListener('mouseup', onAction);
+						 }
+					 }
+					 
+					 
+					 
+					 
+					 /*//canvas na pełną wysokość i szerokość okna
+					 var my_canvas = document.createElement('canvas');
+					 my_canvas.width = window.innerWidth;
+					 my_canvas.height = window.innerHeight;
+					 
+					 document.body.appendChild(my_canvas);
+					 
+					 var ctx = my_canvas.getContext('2d');
+//					 ustawienie 'x' na 10% szerokości okna przeglądarki
+					 var x = Math.round(my_canvas.width*0.1);
+					 var y = 50;
+					 var h = 100;
+					 var forward = true;
+					 
+					 var fps = 50;
+					 var lastTime = 2;
+					 animationLoop();
+					 
+					 function animationLoop(time){
+						 requestAnimationFrame(animationLoop);
+						 if(time-lastTime>=1000/fps){
+							 lastTime = time;
+							 // czyszczenie całej canvas
+							 ctx.clearRect(0,0,my_canvas.width, my_canvas.height);
+							 // rysowanie
+							 ctx.fillRect(x,y,h,h);
+							 
+							 x = forward ? x+55 : x-15;
+							 
+							 if(forward && x+h>my_canvas.width*0.9){
+								 forward = false;
+							 }else if(!forward && x<my_canvas.width*0.1){
+								 forward = true;
+							 }
+						 }
+					 }*/
+					 
+					 
+					 
+					 
+			/*		 var my_canvas = document.createElement('canvas');
+		my_canvas.width = window.innerWidth;
+		my_canvas.height = window.innerHeight;
+		document.body.appendChild(my_canvas);
+		var ctx = my_canvas.getContext('2d');
+					 
+			var wszystkieKwadraty = []		 
+			var widoczneKwadraty		 
+
+		var fps = 60;
+		
+	
+		
+		var lastTime = 0;
+		animationLoop();
+		
+		function animationLoop( time ){
+			requestAnimationFrame( animationLoop )
+		//				'time' jest parametrem który dostajemy za każdym razem jak requestAnimation Frame wywoła funkcje
+			
+			//			wpisanie wszystkich właściwości do obiektu - kwadrat 
+		
+			
+			if(time-lastTime>=1000/fps){
+				
+				lastTime = time;
+//				dodajemy kwadrat
+		
+			for (var i=0; i<15; i++){
+				
+			wszystkieKwadraty.push({
+				x:my_canvas.width/2,
+				y:my_canvas.height/2,
+				h:rand(10,80),
+				r:rand(0,240),
+				g:rand(0,240),
+				b:rand(0,240),
+				speedX:rand(-1000,1000)/100,
+				speedY:rand(-1000,1000)/100
+			})
+
+			if(wszystkieKwadraty[wszystkieKwadraty.length-1].speedX==0 && wszystkieKwadraty[wszystkieKwadraty.length-1].speedY==0){
+				wszystkieKwadraty[wszystkieKwadraty.length-1].speedX = rand(1,5);
+			}
+		}
+				
+				
+		//	ctx.clearRect(0,0,my_canvas.width, my_canvas.height)
+		//	kolor biały canvas z przezroczystością 0.2
+			ctx.fillStyle = 'rgba(255,255,255,0.2)';
+			ctx.fillRect(0,0,my_canvas.width, my_canvas.height);
+				
+			widoczneKwadraty.length = 0	
+				
+			for (var i=0; i<wszystkieKwadraty.length; i++){
+				var kwadrat = wszystkieKwadraty[i]
+				ctx.fillStyle = 'rgb( '+kwadrat.r+','+kwadrat.g+','+kwadrat.b+')';
+				
+			kwadrat.x = kwadrat.x+kwadrat.speedX;
+			kwadrat.y = kwadrat.y+kwadrat.speedY;
+			ctx.fillRect(kwadrat.x-kwadrat.h/2, kwadrat.y-kwadrat.h/2, kwadrat.h,kwadrat.h);
+				
+			if(kwadrat.x+kwadrat.h/2>0 && kwadrat.x-kwadrat.h/2<my_canvas.width && kwadrat.y+kwadrat.h/2>0 && kwadrat.y-kwadrat.h/2<my_canvas.height){
+				widoczneKwadraty.push(kwadrat)
+			}	
+		}
+				
+		wszystkieKwadraty = widoczneKwadraty.concat()	
+	
+			}
+			
+	
+		
+		function rand(min, max){
+		//				obiekt Math ma metodę random, random nie przyjmuje argumentów ale zwraca wartość od 0 do 1
+//			Math.random zaokrągla liczy do całkowitych
+			return Math.floor(Math.random()*(max-min+1)+min)
+		}
+					 
+		}*/
+					 
+					 
+					 
+					/* function xcv(){
+						 alert (my_array);
+					 }
 					 var my_array = ['a','b','c','d','e','f'];
 //					 Pętle
 //					 robimy trzy rzeczy: deklaracja zmiennej która równa się zero "i=0", określamy jaki jest warunek aby pętla się odtwarzała"i<5",zdefiniować co dzieje się ze zmienną "i" jak pętla się odtworzy,ona zwiększy się o jeden"i++"
-					 for(var i = 0; i<my_array.length; i++ ){
+					 for(var i = 0; i<5; i++ ){
 //						 to pomiędzy klamrami zadzieje się 5 razy
-						 console.log(my_array[i])
-					 }
+						 console.log(i);
+					 }*/
 					  
 					
 					 
