@@ -21,7 +21,58 @@
 					 
 		 		 <script>
 					 
-				//Zdarzenia
+					 //DOPASOWANIE WIEKOŚCI OKNA
+					 
+					 var my_canvas = document.createElement('canvas');
+					 
+					 layout()
+					 //nasłuchiwanie funkcji'resize' która nasłuchuje zmianę wielkości okna
+					 window.addEventListener('resize', layout, false);
+					 
+//					 my_canvas.width = window.innerWidth;
+//					 my_canvas.height = window.innerHeight;
+					 
+					 document.body.appendChild(my_canvas);
+					 
+					 var ctx = my_canvas.getContext('2d');
+//					 ustawienie 'x' na 10% szerokości okna przeglądarki
+					 var x = Math.round(my_canvas.width*0.1);
+					 var y = 50;
+					 var h = 100;
+					 var forward = true;
+					 
+					 var fps = 50;
+					 var lastTime = 2;
+					 animationLoop();
+					 
+					 function layout(ev){
+						 my_canvas.width = window.innerWidth;
+					 	 my_canvas.height = window.innerHeight;
+						 console.log(my_canvas.width);
+					 }
+					 
+					 function animationLoop(time){
+						 requestAnimationFrame(animationLoop);
+						 if(time-lastTime>=1000/fps){
+							 lastTime = time;
+							 // czyszczenie całej canvas
+							 ctx.clearRect(0,0,my_canvas.width, my_canvas.height);
+							 // rysowanie
+							 ctx.fillRect(x,y,h,h);
+							 
+							 x = forward ? x+55 : x-15;
+							 
+							 if(forward && x+h>my_canvas.width*0.9){
+								 forward = false;
+							 }else if(!forward && x<my_canvas.width*0.1){
+								 forward = true;
+							 }
+						 }
+					 }
+					 
+					 
+					 
+				/*//Zdarzenia
 					 
 					 //nasłuchiwacz, trzy parametry:keydown, onAction, i false
 					 //klawisz naciśnięty 
@@ -46,7 +97,7 @@
 						 if(event.type=='mouseup'){
 							 window.removeEventListener('mouseup', onAction);
 						 }
-					 }
+					 }*/
 					 
 					 
 					 
