@@ -21,13 +21,58 @@
 					 
 		 		 <script>
 					 
-					 //DOPASOWANIE WIEKOŚCI OKNA
+					 //TWORZENIE KONSTRUKTORA
+					 
+					 //liczenie obiektów o określonej właściwości , w tym przypadku 'gender'
+					 Animal.maleCount = 0;
+					 	//w małym nawiasie są parametry funkcji
+					 function Animal(jakies_type, to_gender){
+						 //obiekt'this'ma przypisaną właściwość 'type'i do tej właściwości przypisana jest wartość'jakas_type'
+						 this.type = jakies_type;
+						 this.gender = to_gender;
+						 if(to_gender=='male'){
+							 Animal.maleCount ++;
+						 }
+					 }
+					 
+					 //do konstruktora czyli obiektu'Animal' do jego właściwości 'prptotype' (właściwość 'prototype jest w każdym obiekcie) przypisujemy metodę 'eat'
+					 Animal.prototype.eat = function(food){
+						 return this.type + ' zjadł. ' + food + ' zamienia się w kupę'
+					 }
+					 
+					 //'new' jest słówkiem kluczowym
+					 var kot = new Animal('cat', 'male');
+					 var pies = new Animal('dog', 'male');
+					 
+					 console.log( kot )
+					 console.log( pies )
+					 console.log( kot.eat('bigos'));
+					 
+					 function Pet(name, type, gender){
+						 Animal.call(this, type, gender);
+						 this.name = name;
+					 }
+					 
+					 Pet.prototype = new Animal();
+					 Pet.prototype.constructor = Pet;
+					 
+					 var loki = new Pet('loki', 'dog', 'male');
+					 console.log(loki);
+					 console.log(loki.eat( 'kiełbasa'));
+					 
+					 console.log(Animal.maleCount);
+					 
+					 
+					 
+					/* //DOPASOWANIE WIEKOŚCI OKNA
 					 
 					 var my_canvas = document.createElement('canvas');
 					 
 					 layout()
 					 //nasłuchiwanie funkcji'resize' która nasłuchuje zmianę wielkości okna
 					 window.addEventListener('resize', layout, false);
+					 //dodanie nasłuchiwania ruchu myszy , ruch myszy uruchamia animacje
+					 window.addEventListener('mousemove', onMove, false);
 					 
 //					 my_canvas.width = window.innerWidth;
 //					 my_canvas.height = window.innerHeight;
@@ -68,7 +113,7 @@
 								 forward = true;
 							 }
 						 }
-					 }
+					 }*/
 					 
 					 
 					 
